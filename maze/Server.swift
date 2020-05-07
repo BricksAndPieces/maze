@@ -39,7 +39,7 @@ class Server{
     }
     
     func reciveAndSend(client: TCPClient){
-        guard let data = client.read(8, timeout: 5) else { return  }
+        guard let data = client.read(8) else { return  }
         var size = bytes_int(bytes: data)
         let data2 = client.read(size)!
         let cord = String(bytes:data2, encoding: .utf8)!
@@ -63,3 +63,5 @@ class Server{
     }
 
 }
+
+
