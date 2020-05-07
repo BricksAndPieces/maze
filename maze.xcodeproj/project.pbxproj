@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0BCE0EB7BA36213B4AA37337 /* Pods_maze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658C09C36D392DA2B212C4C2 /* Pods_maze.framework */; };
+		789802292464AF69001A1F7A /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789802282464AF69001A1F7A /* MazeGenerator.swift */; };
 		A82D8FE9246326CC008AF8E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82D8FE8246326CC008AF8E9 /* AppDelegate.swift */; };
 		A82D8FEB246326CC008AF8E9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FEA246326CC008AF8E9 /* GameScene.sks */; };
 		A82D8FED246326CC008AF8E9 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FEC246326CC008AF8E9 /* Actions.sks */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		3341FAFD79896EB0C3440231 /* Pods-maze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-maze/Pods-maze.debug.xcconfig"; sourceTree = "<group>"; };
 		658C09C36D392DA2B212C4C2 /* Pods_maze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		789802282464AF69001A1F7A /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
 		A82D8FE5246326CC008AF8E9 /* maze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82D8FE8246326CC008AF8E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A82D8FEA246326CC008AF8E9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				A82D8FF5246326D5008AF8E9 /* Assets.xcassets */,
 				A82D8FF7246326D5008AF8E9 /* LaunchScreen.storyboard */,
 				A82D8FFA246326D5008AF8E9 /* Info.plist */,
+				789802282464AF69001A1F7A /* MazeGenerator.swift */,
 			);
 			path = maze;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			files = (
 				A82D8FEF246326CC008AF8E9 /* GameScene.swift in Sources */,
 				A82D8FF1246326CC008AF8E9 /* GameViewController.swift in Sources */,
+				789802292464AF69001A1F7A /* MazeGenerator.swift in Sources */,
 				A82D8FE9246326CC008AF8E9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
