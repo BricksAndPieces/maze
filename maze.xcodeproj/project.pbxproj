@@ -16,6 +16,7 @@
 		A82D8FF4246326CC008AF8E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF2246326CC008AF8E9 /* Main.storyboard */; };
 		A82D8FF6246326D5008AF8E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF5246326D5008AF8E9 /* Assets.xcassets */; };
 		A82D8FF9246326D5008AF8E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF7246326D5008AF8E9 /* LaunchScreen.storyboard */; };
+		A8F7E60424649C5500C0333D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F7E60324649C5500C0333D /* Server.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		A82D8FF5246326D5008AF8E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A82D8FF8246326D5008AF8E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A82D8FFA246326D5008AF8E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8F7E60324649C5500C0333D /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		C8E84D596F78485E9639C833 /* Pods-maze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maze.release.xcconfig"; path = "Pods/Target Support Files/Pods-maze/Pods-maze.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				A82D8FE8246326CC008AF8E9 /* AppDelegate.swift */,
+				A8F7E60324649C5500C0333D /* Server.swift */,
 				A82D8FEA246326CC008AF8E9 /* GameScene.sks */,
 				A82D8FEC246326CC008AF8E9 /* Actions.sks */,
 				A82D8FEE246326CC008AF8E9 /* GameScene.swift */,
@@ -213,6 +216,7 @@
 			files = (
 				A82D8FEF246326CC008AF8E9 /* GameScene.swift in Sources */,
 				A82D8FF1246326CC008AF8E9 /* GameViewController.swift in Sources */,
+				A8F7E60424649C5500C0333D /* Server.swift in Sources */,
 				A82D8FE9246326CC008AF8E9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
