@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private let wallSize = 25
+    private let wallSize = 27
     private let scale = 20
     private let mazeGen = MazeGenerator()
     
