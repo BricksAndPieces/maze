@@ -7,13 +7,12 @@
 //
 
 import SwiftSocket
-
 class Client{
     let ip = "192.168.0.27"
     let client:TCPClient
     let name:String
     
-    var cords = [String]()
+    var cords = [(String, String, String)]()
     init(name: String) {
         self.client = TCPClient(address: ip, port: 2020)
         self.client.connect(timeout: 20)
@@ -38,23 +37,33 @@ class Client{
         let nums = "1234567890"
         for c in cord{
             if nums.contains(c){
-                index = index - 1
+                
+                break
             }
             else{
                index+=1
             }
-            var name = cord.index(cord.startIndex, offsetBy: index)
-            
-            var index = 0
+            var r = cord.index(cord.startIndex, offsetBy: index)
+            var name = cord[cord.startIndex..<r]
+            var index2 = 0
             
             for c in cord{
                 if c == "/"{
-                    index = index - 1
+                    break
                 }
                 else{
-                   index+=1
+                   index2+=1
                 }
-                var x = cord.index(cord.startIndex, offsetBy: index)
+            var r = cord.index(cord.startIndex, offsetBy: index)
+            var r2 = cord.index(cord.startIndex, offsetBy: index2)
+            var x = cord[r..<r2]
+            
+            r = cord.index(cord.startIndex, offsetBy: index2 + 1)
+            var y = cord[r..<cord.endIndex]
+            
+            var finalData = (String(name), String(x), String(y))
+            
+            self.cords.append(finalData)
         }
     }
     
