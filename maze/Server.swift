@@ -9,36 +9,43 @@
 import SwiftSocket
 
 class Server{
-    let ip = "192.168.0.27"
+    let ip = "192.168.0.49"
+    
     let server:TCPServer
     
     var clients = [TCPClient]()
     
-    let a = DispatchQueue(label: "accept", qos:.userInteractive, attributes: .concurrent)
+    let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
     
     var threads = [DispatchQueue]()
     init() {
-        self.server = TCPServer(address: ip, port: 2020)
+        self.server = TCPServer(address: ip, port: 8009)
+        
         
     }
     
     func start(){
+        self.server.listen()
         a.async {
+            
             while true{
-                let client = self.server.accept()!
+                var client = self.server.accept()!
                 self.clients.append(client)
-                let t = DispatchQueue(label: String(self.threads.count), qos:.userInteractive, attributes: .concurrent)
+                
+                var t = DispatchQueue(label: String(self.threads.count), qos:.background, attributes: .concurrent)
                 self.threads.append(t)
                 t.async {
                     while true{
-                        self.reciveAndSend(client: client)
+                        self.reciveAndSend(client:client)
                     }
                 }
+                
             }
-        }
+    }
     }
     
     func reciveAndSend(client: TCPClient){
+        
         guard let data = client.read(8) else { return  }
         var size = bytes_int(bytes: data)
         let data2 = client.read(size)!
@@ -63,5 +70,6 @@ class Server{
     }
 
 }
+
 
 
