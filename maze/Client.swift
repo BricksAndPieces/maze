@@ -9,6 +9,7 @@
 import SwiftSocket
 class Client{
     let ip = "192.168.0.49"
+    //hope this works
     
     let client:TCPClient
     let name:String
