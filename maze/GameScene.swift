@@ -8,41 +8,29 @@
 
 import SpriteKit
 import GameplayKit
-import SwiftSocket
+
 class GameScene: SKScene {
     
-   
+    private let wallSize = 27
+    private let scale = 20
+    private let mazeGen = MazeGenerator()
     
     override func didMove(to view: SKView) {
+        let layout = mazeGen.generateMaze(width: wallSize, height: wallSize, centerSize: 3)
         
-       var s = Server()
-        s.start()
-        
-        var c = Client(name: "hibey")
-        var c2 = Client(name:"man")
-        c.sendCords(x: 3, y: 4)
-        c2.sendCords(x: 3, y: 4)
-    }
-    
-    
-    
-    
-    
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        for x in 0 ..< wallSize {
+            for y in 0 ..< wallSize {
+                if layout[x][y] {
+                    let wall = SKShapeNode(rectOf: CGSize(width: scale, height: scale))
+                    wall.position.x = CGFloat((wallSize/2-x)*scale)
+                    wall.position.y = CGFloat((wallSize/2-y)*scale)
+                    
+                    wall.strokeColor = .white
+                    wall.fillColor = .white
+                    
+                    addChild(wall)
+                }
+            }
         }
-        
-        
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       
-    }
-    
-    
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
     }
 }
