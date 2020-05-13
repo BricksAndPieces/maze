@@ -8,16 +8,16 @@
 
 import SpriteKit
 import GameplayKit
-
+import SwiftSocket
 class GameScene: SKScene {
-    
+
     private let wallSize = 27
     private let scale = 20
     private let mazeGen = MazeGenerator()
     
     override func didMove(to view: SKView) {
         let layout = mazeGen.generateMaze(width: wallSize, height: wallSize, centerSize: 3)
-        
+       
         for x in 0 ..< wallSize {
             for y in 0 ..< wallSize {
                 if layout[x][y] {
