@@ -21,7 +21,7 @@ class Client{
         self.client = TCPClient(address: ip, port: 8009)
         switch self.client.connect(timeout: 20){
         case.success:
-            print("suses")
+            print("connect")
             
         case.failure:
             print("fail")
