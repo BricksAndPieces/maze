@@ -20,50 +20,15 @@ class GameScene: SKScene {
         
         for x in 0 ..< wallSize {
             for y in 0 ..< wallSize {
-                //if layout[x][y] {
-//                    let wall = SKShapeNode(rectOf: CGSize(width: scale, height: scale))
-//                    wall.position.x = CGFloat((wallSize/2-x)*scale)
-//                    wall.position.y = CGFloat((wallSize/2-y)*scale)
-//
-//                    wall.strokeColor = .white
-//                    wall.fillColor = .white
-//
-//                    addChild(wall)
-                    
-                if let tile = getTile(layout, x, y) {
-                    let wall = SKSpriteNode(imageNamed: "tile\(tile)")
-                    wall.scale(to: CGSize(width: scale, height: scale))
-                    wall.position.x = CGFloat((wallSize/2-x)*scale)
-                    wall.position.y = CGFloat((wallSize/2-y)*scale)
-                    
-                    addChild(wall)
-                }
-                    
-
-                //}
+                let tileNum = layout[x][y] ? Int.random(in: 5...8) : Int.random(in: 1...4)
+                
+                let tile = SKSpriteNode(imageNamed: "tile\(tileNum)")
+                tile.scale(to: CGSize(width: scale, height: scale))
+                tile.position.x = CGFloat((wallSize/2-x)*scale)
+                tile.position.y = CGFloat((wallSize/2-y)*scale)
+                
+                addChild(tile)
             }
         }
-    }
-    
-    private func getTile(_ layout: [[Bool]], _ x: Int, _ y: Int) -> Int? {
-        
-        let up = mazeGen.validNode(maze: layout, node: (x, y-1)) ? true : layout[x][y-1]
-        let down = mazeGen.validNode(maze: layout, node: (x, y+1)) ? true : layout[x][y+1]
-        let left = mazeGen.validNode(maze: layout, node: (x-1, y)) ? true : layout[x-1][y]
-        let right = mazeGen.validNode(maze: layout, node: (x+1, y)) ? true : layout[x+1][y]
-        let upRight = mazeGen.validNode(maze: layout, node: (x+1, y-1)) ? true : layout[x+1][y-1]
-        let upLeft = mazeGen.validNode(maze: layout, node: (x-1, y-1)) ? true : layout[x-1][y-1]
-        let downRight = mazeGen.validNode(maze: layout, node: (x+1, y+1)) ? true : layout[x+1][y+1]
-        let downLeft = mazeGen.validNode(maze: layout, node: (x-1, y+1)) ? true : layout[x-1][y+1]
-        
-        if(!layout[x][y] && !up && !down && !left && !right && !upRight && !upLeft && !downRight && !downLeft) {
-            return Int.random(in: 1...4)
-        }
-        
-        if(layout[x][y] && !up && !down && !left && !right && !upRight && !upLeft && !downRight && !downLeft) {
-            return Int.random(in: 1...4)
-        }
-        
-        return nil
     }
 }
