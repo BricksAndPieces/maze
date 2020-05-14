@@ -20,16 +20,14 @@ class GameScene: SKScene {
         
         for x in 0 ..< wallSize {
             for y in 0 ..< wallSize {
-                if layout[x][y] {
-                    let wall = SKShapeNode(rectOf: CGSize(width: scale, height: scale))
-                    wall.position.x = CGFloat((wallSize/2-x)*scale)
-                    wall.position.y = CGFloat((wallSize/2-y)*scale)
-                    
-                    wall.strokeColor = .white
-                    wall.fillColor = .white
-                    
-                    addChild(wall)
-                }
+                let tileNum = layout[x][y] ? Int.random(in: 5...8) : Int.random(in: 1...4)
+                
+                let tile = SKSpriteNode(imageNamed: "tile\(tileNum)")
+                tile.scale(to: CGSize(width: scale, height: scale))
+                tile.position.x = CGFloat((wallSize/2-x)*scale)
+                tile.position.y = CGFloat((wallSize/2-y)*scale)
+                
+                addChild(tile)
             }
         }
     }
