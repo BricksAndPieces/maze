@@ -20,12 +20,13 @@ class Server{
     var threads = [DispatchQueue]()
     init() {
         self.server = TCPServer(address: ip, port: 8009)
+        self.server.listen()
         
         
     }
     
     func start(){
-        self.server.listen()
+        
         a.async {
             
             while true{
@@ -68,7 +69,26 @@ class Server{
         let b = UnsafeRawPointer(bytes).assumingMemoryBound(to: Int.self).pointee.bigEndian
         return b
     }
-
+    func sendMaze(maze: [[Bool]]){
+        
+        var s = ""
+        for r in maze{
+            for i in r{
+                if i{
+                    s = s + "T"
+                }
+                else{
+                    s = s + "F"
+                }
+            }
+            s = s + ";"
+        }
+        for c in self.clients{
+            c.send(data: int_bytes(num: s.count))
+            c.send(string: s)
+            
+        }
+    }
 }
 
 

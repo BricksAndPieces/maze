@@ -14,14 +14,22 @@ class GameScene: SKScene {
    
     
     override func didMove(to view: SKView) {
-        
+        var maze = [[true, true],[false, true], [false, false] ]
        var s = Server()
         s.start()
+        var client = Client(name:"jemes")
         
-        var c = Client(name: "hibey")
-        var c2 = Client(name:"man")
-        c.sendCords(x: 3, y: 4)
-        c2.sendCords(x: 3, y: 4)
+        
+        sleep(2)
+        s.sendMaze(maze: maze)
+        var m = client.reciveMaze()
+        print(m)
+        sleep(2)
+        client.start()
+        client.sendCords(x: 40, y: 30)
+        
+        print(client.cords)
+        
     }
     
     

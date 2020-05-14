@@ -28,17 +28,19 @@ class Client{
         }
         self.name = name
         
-        a.async {
+        
+        
+    }
+    func start(){
+        self.a.async {
             while true{
                 self.reciveCords()
             }
         }
-        
     }
-    
     func sendCords(x: CGFloat, y: CGFloat){
         let data = self.name+x.description+"/"+y.description
-        print(data)
+        
         let size = data.count
         let sizeB = self.int_bytes(num: size)
         self.client.send(data: sizeB)
@@ -91,7 +93,7 @@ class Client{
         if found == false{
             self.cords.append(final)
         }
-        print(self.cords)
+        
 
     }
     func int_bytes(num: Int) -> [UInt8]{
@@ -104,5 +106,30 @@ class Client{
         return b
     }
 
-
+    func stringTo2D(s:String) -> [[Bool]]{
+        var list = [[Bool]]()
+        list.append([])
+        for i in s{
+            if i == ";"{
+                list.append([])
+            }
+            else if i == "T"{
+                list[list.count - 1].append(true)
+            }
+            else{
+                list[list.count - 1].append(false)
+            }
+            
+        }
+        list.remove(at: list.count - 1)
+        return list
+    }
+    
+    func reciveMaze() -> [[Bool]]{
+        guard var size = self.client.read(8, timeout: 5) else {print("timeout"); return [[Bool]]() }
+        var mazeB = self.client.read(bytes_int(bytes: size), timeout: 5)!
+        var maze = String(bytes: mazeB, encoding: .utf8)!
+        
+        return stringTo2D(s: maze)
+    }
 }
