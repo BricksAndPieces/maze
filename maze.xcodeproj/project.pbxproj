@@ -17,8 +17,6 @@
 		A82D8FF4246326CC008AF8E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF2246326CC008AF8E9 /* Main.storyboard */; };
 		A82D8FF6246326D5008AF8E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF5246326D5008AF8E9 /* Assets.xcassets */; };
 		A82D8FF9246326D5008AF8E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FF7246326D5008AF8E9 /* LaunchScreen.storyboard */; };
-		A8F7E60424649C5500C0333D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F7E60324649C5500C0333D /* Server.swift */; };
-		A8F7E6062464A3AF00C0333D /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F7E6052464A3AF00C0333D /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

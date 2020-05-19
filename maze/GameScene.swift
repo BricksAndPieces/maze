@@ -27,6 +27,10 @@ class GameScene: SKScene {
                 tile.position.x = CGFloat((wallSize/2-x)*scale)
                 tile.position.y = CGFloat((wallSize/2-y)*scale)
                 
+                if layout[x][y] {
+                    tile.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
+                }
+                
                 addChild(tile)
             }
         }
