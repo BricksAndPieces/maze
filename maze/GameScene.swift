@@ -13,22 +13,32 @@ class GameScene: SKScene {
     
     private let wallSize = 27
     private let scale = 20
-    private let mazeGen = MazeGenerator()
-    
+  
+    var h = SKSpriteNode()
+    var c = SKSpriteNode()
     override func didMove(to view: SKView) {
-        let layout = mazeGen.generateMaze(width: wallSize, height: wallSize, centerSize: 3)
+        h = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 50, height: 50))
+        h.addChild(SKLabelNode(text: "host"))
+        h.position = CGPoint(x: 200, y: 200)
         
-        for x in 0 ..< wallSize {
-            for y in 0 ..< wallSize {
-                let tileNum = layout[x][y] ? Int.random(in: 5...8) : Int.random(in: 1...4)
-                
-                let tile = SKSpriteNode(imageNamed: "tile\(tileNum)")
-                tile.scale(to: CGSize(width: scale, height: scale))
-                tile.position.x = CGFloat((wallSize/2-x)*scale)
-                tile.position.y = CGFloat((wallSize/2-y)*scale)
-                
-                addChild(tile)
-            }
-        }
+        c = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 50, height: 50))
+        c.addChild(SKLabelNode(text: "client"))
+        c.position = CGPoint(x: 400, y: 200)
+        addChild(c)
+        addChild(h)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var t = touches.first?.location(in: self) as! CGPoint
+        
+        if h.contains(t){
+            print("host")
+        }
+        else if c.contains(t){
+            print("client")
+        }
+        
+    }
+        
+    
 }
