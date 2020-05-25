@@ -15,8 +15,9 @@ class gameplay:SKScene{
     var player = SKShapeNode()
     var c:Client?
     var players = [SKShapeNode]()
+    var names = "trr"
     override func didMove(to view: SKView) {
-        c = Client(name: "bob")
+        c = Client(name: names)
         c!.start()
 
         
@@ -59,11 +60,14 @@ class gameplay:SKScene{
         players = []
         
         for i in c!.cords{
-            var one = SKShapeNode(circleOfRadius: 30)
-            one.position = CGPoint(x: Double(i.1)!, y: Double(i.2)!)
-            one.fillColor = UIColor.red
-            addChild(one)
-            players.append(one)
+            if i.0 != names{
+                var one = SKShapeNode(circleOfRadius: 30)
+                one.position = CGPoint(x: Double(i.1)!, y: Double(i.2)!)
+                one.fillColor = UIColor.red
+                addChild(one)
+                players.append(one)
+            }
+            
             
         }
     }

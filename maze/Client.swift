@@ -15,7 +15,7 @@ class Client{
     
     var cords = [(String, String, String)]()
     
-    let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
+    let a = DispatchQueue(label: "accept", qos:.userInitiated, attributes: .concurrent)
     
     init(name: String) {
         self.client = TCPClient(address: ip, port: 8009)

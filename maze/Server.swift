@@ -33,7 +33,7 @@ class Server{
                 var client = self.server.accept()!
                 self.clients.append(client)
                 
-                var t = DispatchQueue(label: String(self.threads.count), qos:.background, attributes: .concurrent)
+                var t = DispatchQueue(label: String(self.threads.count), qos:.userInitiated, attributes: .concurrent)
                 self.threads.append(t)
                 t.async {
                     while true{
