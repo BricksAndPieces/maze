@@ -23,7 +23,7 @@ class GameScene: SKScene {
         
         c = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 50, height: 50))
         c.addChild(SKLabelNode(text: "client"))
-        c.position = CGPoint(x: 400, y: 200)
+        c.position = CGPoint(x: 100, y: 200)
         addChild(c)
         addChild(h)
     }
@@ -33,9 +33,15 @@ class GameScene: SKScene {
         
         if h.contains(t){
             print("host")
+            var s = Server()
+            s.start()
+            let sc = gameplay(size: self.size)
+            self.view?.presentScene(sc)
         }
         else if c.contains(t){
             print("client")
+            let sc = gameplay(size: self.size)
+            self.view?.presentScene(sc)
         }
         
     }
