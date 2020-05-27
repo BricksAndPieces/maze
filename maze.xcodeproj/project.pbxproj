@@ -12,6 +12,7 @@
 		A80E07DE247C67D400370517 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F7E60324649C5500C0333D /* Server.swift */; };
 		A80E07DF247C67D700370517 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F7E6052464A3AF00C0333D /* Client.swift */; };
 		A80E07E1247C682400370517 /* gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E07E0247C682400370517 /* gameplay.swift */; };
+		78A058B7247D6BE30033794D /* MazeTileset.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78A058B6247D6BE30033794D /* MazeTileset.sks */; };
 		A82D8FE9246326CC008AF8E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82D8FE8246326CC008AF8E9 /* AppDelegate.swift */; };
 		A82D8FEB246326CC008AF8E9 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FEA246326CC008AF8E9 /* GameScene.sks */; };
 		A82D8FED246326CC008AF8E9 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A82D8FEC246326CC008AF8E9 /* Actions.sks */; };
@@ -27,6 +28,7 @@
 		658C09C36D392DA2B212C4C2 /* Pods_maze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		789802282464AF69001A1F7A /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
 		A80E07E0247C682400370517 /* gameplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameplay.swift; sourceTree = "<group>"; };
+		78A058B6247D6BE30033794D /* MazeTileset.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MazeTileset.sks; sourceTree = "<group>"; };
 		A82D8FE5246326CC008AF8E9 /* maze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82D8FE8246326CC008AF8E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A82D8FEA246326CC008AF8E9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				A82D8FF7246326D5008AF8E9 /* LaunchScreen.storyboard */,
 				A82D8FFA246326D5008AF8E9 /* Info.plist */,
 				789802282464AF69001A1F7A /* MazeGenerator.swift */,
+				78A058B6247D6BE30033794D /* MazeTileset.sks */,
 			);
 			path = maze;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				A82D8FF4246326CC008AF8E9 /* Main.storyboard in Resources */,
 				A82D8FEB246326CC008AF8E9 /* GameScene.sks in Resources */,
 				A82D8FF6246326D5008AF8E9 /* Assets.xcassets in Resources */,
+				78A058B7247D6BE30033794D /* MazeTileset.sks in Resources */,
 				A82D8FF9246326D5008AF8E9 /* LaunchScreen.storyboard in Resources */,
 				A82D8FED246326CC008AF8E9 /* Actions.sks in Resources */,
 			);
