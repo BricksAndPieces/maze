@@ -28,21 +28,21 @@ class GameScene: SKScene {
         for x in 0 ..< wallSize {
             for y in 0 ..< wallSize {
                 tilemap.setTileGroup(layout[x][y] ? wallTiles : pathTiles, forColumn: x, row: y)
-                
-//                let tileNum = layout[x][y] ? Int.random(in: 5...8) : Int.random(in: 1...4)
-//
-//                let tile = SKSpriteNode(imageNamed: "tile\(tileNum)")
-//                tile.scale(to: CGSize(width: scale, height: scale))
-//                tile.position.x = CGFloat((wallSize/2-x)*scale)
-//                tile.position.y = CGFloat((wallSize/2-y)*scale)
-//
-//                if layout[x][y] {
-//                    tile.physicsBody = SKPhysicsBody(rectangleOf: tile.size)
-//                }
-//
-//                addChild(tile)
+
+                if layout[x][y] {
+                    let tile = SKNode()
+                    tile.position.x = CGFloat((x-wallSize/2)*128)
+                    tile.position.y = CGFloat((y-wallSize/2)*128)
+                    
+                    tile.physicsBody = SKPhysicsBody(rectangleOf: tileSize)
+                    tile.physicsBody?.affectedByGravity = false
+                    tile.physicsBody?.allowsRotation = false
+                    
+                    tilemap.addChild(tile)
+                }
             }
         }
+        
         
         tilemap.setScale(0.2)
         addChild(tilemap)
