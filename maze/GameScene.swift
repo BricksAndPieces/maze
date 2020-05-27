@@ -16,6 +16,21 @@ override func didMoveToView(view: SKView) {
     self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
     player = SKSpriteMode(color: UIColor.cyanColor(), size: CGSize(width: 90, hieght: 90))
-    player.anchorpoint = CGPoint(x.5, y: 0.5)
+    player.anchorpoint = CGPoint(x: 0.5, y: 0.5)
+    player.position = CGPoint(x: 0, y:0)
     
+    self.adChild(player)
+}
+
+override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    for touch in touches {
+        
+        let location = touch.locationInNode[self]
+        
+        player.position.x = location.x
+        player.position.y = location.y
+        
+        print("x: ")
+    }
 }
