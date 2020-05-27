@@ -8,7 +8,7 @@
 
 import SwiftSocket
 class Client{
-    let ip = "192.168.0.49"
+    let ip:String
     
     let client:TCPClient
     let name:String
@@ -17,7 +17,8 @@ class Client{
     
     let a = DispatchQueue(label: "accept", qos:.userInitiated, attributes: .concurrent)
     
-    init(name: String) {
+    init(name: String, ip: String="192.168.0.49") {
+        self.ip = ip
         self.client = TCPClient(address: ip, port: 8009)
         switch self.client.connect(timeout: 20){
         case.success:

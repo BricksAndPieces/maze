@@ -9,7 +9,7 @@
 import SwiftSocket
 
 class Server{
-    let ip = "192.168.0.49"
+    let ip:String
     
     let server:TCPServer
     
@@ -18,7 +18,8 @@ class Server{
     let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
     
     var threads = [DispatchQueue]()
-    init() {
+    init(ip: String="192.168.0.49") {
+        self.ip = ip
         self.server = TCPServer(address: ip, port: 8009)
         self.server.listen()
         
