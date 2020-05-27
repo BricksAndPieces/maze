@@ -49,7 +49,7 @@ class Client{
         
     }
     func reciveCords(){
-        
+        print("here")
         guard let sizeB = self.client.read(8, timeout: 5) else { return }
         let size = bytes_int(bytes: sizeB)
         let data = self.client.read(size, timeout: 5)!
@@ -127,7 +127,8 @@ class Client{
     }
     
     func reciveMaze() -> [[Bool]]{
-        guard var size = self.client.read(8, timeout: 5) else {print("timeout"); return [[Bool]]() }
+        
+        guard var size = self.client.read(8, timeout: 200) else {print("timeout"); return [[Bool]]() }
         var mazeB = self.client.read(bytes_int(bytes: size), timeout: 5)!
         var maze = String(bytes: mazeB, encoding: .utf8)!
         

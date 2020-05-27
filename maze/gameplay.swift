@@ -15,12 +15,15 @@ class gameplay:SKScene{
     var player = SKShapeNode()
     var c:Client?
     var players = [SKShapeNode]()
-    var names = "trr"
+    var names = "HELP"
+    var mazeLayout: [[Bool]]?
     override func didMove(to view: SKView) {
-        c = Client(name: names)
-        c!.start()
-
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        var mazeGen = MazeGenerator()
+        let tilemap = mazeGen.getMazeNode(layout: mazeLayout!)
+        tilemap.setScale(0.5)
+        addChild(tilemap)
         l = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 50, height: 50))
         l.addChild(SKLabelNode(text: "Left"))
         l.position = CGPoint(x: 200, y: 200)
@@ -34,7 +37,10 @@ class gameplay:SKScene{
         player = SKShapeNode(circleOfRadius: CGFloat(30))
         player.fillColor = UIColor.green
         player.position = CGPoint(x: 50, y: 50)
+        player.physicsBody = SKPhysicsBody()
+        
         addChild(player)
+        c!.start()
         
     }
     
@@ -60,7 +66,7 @@ class gameplay:SKScene{
         players = []
         
         for i in c!.cords{
-            if i.0 != names{
+            if i.0 != c!.name{
                 var one = SKShapeNode(circleOfRadius: 30)
                 one.position = CGPoint(x: Double(i.1)!, y: Double(i.2)!)
                 one.fillColor = UIColor.red
