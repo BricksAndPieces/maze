@@ -57,8 +57,14 @@ class GameScene: SKScene {
         self.view!.addSubview(ip)
         ip.text = getWiFiAddress()
         ip.textColor = UIColor.white
+        
+        var directions = SKLabelNode(text: "Server IP in top black box. Current Ip is devices Ip")
+        directions.position = CGPoint(x: 0, y: -200)
+        addChild(directions)
+        
         lobby = SKLabelNode(text: "")
         lobby.position = CGPoint(x: 0, y: 0)
+        
         
 
         
