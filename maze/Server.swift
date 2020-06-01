@@ -16,9 +16,9 @@ class Server{
     var clients = [TCPClient]()
     
     let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
-    
+    //IP was 192.168.0.49
     var threads = [DispatchQueue]()
-    init(ip: String="192.168.0.49") {
+    init(ip: String="192.168.86.54") {
         self.ip = ip
         self.server = TCPServer(address: ip, port: 8009)
         self.server.listen()
