@@ -54,7 +54,7 @@ class gameplay:SKScene{
         addChild(up)
         addChild(down)
         
-        player = SKShapeNode(circleOfRadius: CGFloat(30))
+        player = SKShapeNode(circleOfRadius: CGFloat(25))
         player.fillColor = UIColor.green
         player.position = CGPoint(x: 50, y: 50)
         player.physicsBody = SKPhysicsBody(circleOfRadius: 25)

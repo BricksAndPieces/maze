@@ -13,7 +13,7 @@ class GameScene: SKScene {
     
     private let wallSize = 27
     private let scale = 20
-  
+    var qwe = SKLabelNode(text:"")
     var h = SKSpriteNode()
     var c = SKSpriteNode()
     var m = SKSpriteNode()
@@ -25,6 +25,10 @@ class GameScene: SKScene {
     var ip = UITextField(frame: CGRect(x: 100, y: 30, width: 200, height: 50))
     
     override func didMove(to view: SKView) {
+        
+       qwe.position  = CGPoint(x: 0, y: 0)
+       addChild(qwe)
+        
         h = SKSpriteNode(color: UIColor.gray, size: CGSize(width: 50, height: 50))
         h.addChild(SKLabelNode(text: "host"))
         h.position = CGPoint(x: 200, y: 200)
@@ -51,7 +55,7 @@ class GameScene: SKScene {
         
         ip.backgroundColor = UIColor.black
         self.view!.addSubview(ip)
-        ip.text = "Enter Server IP"
+        ip.text = getWiFiAddress()
         ip.textColor = UIColor.white
         lobby = SKLabelNode(text: "")
         lobby.position = CGPoint(x: 0, y: 0)
@@ -64,7 +68,7 @@ class GameScene: SKScene {
         var t = touches.first?.location(in: self) as! CGPoint
         
         if h.contains(t){
-            
+            qwe.removeFromParent()
                         nameEntry.removeFromSuperview()
             ip.removeFromSuperview()
             c.removeFromParent()
@@ -90,7 +94,7 @@ class GameScene: SKScene {
             cli.sendName()
             addChild(m)
             let n = DispatchQueue(label: "recive maze", qos:.userInitiated, attributes: .concurrent)
-
+            
             n.async{
                 
                 
@@ -109,13 +113,20 @@ class GameScene: SKScene {
             
         }
         else if c.contains(t){
-            nameEntry.removeFromSuperview()
-            ip.removeFromSuperview()
-            c.removeFromParent()
+            
+            
+            
+            
+            
             var cli = Client(name: nameEntry.text!, ip: ip.text!)
-            cli.sendName()
+            
             if cli.connected{
+                cli.sendName()
+                qwe.text = "Waiting for the host to start the game"
                 h.removeFromParent()
+                c.removeFromParent()
+                nameEntry.removeFromSuperview()
+                ip.removeFromSuperview()
                 let n = DispatchQueue(label: "recive maze", qos:.userInitiated, attributes: .concurrent)
 
                 n.async{
@@ -131,6 +142,9 @@ class GameScene: SKScene {
                     
                 }
                 
+            }
+            else{
+                qwe.text = "Failed to connect!"
             }
             
             
@@ -148,6 +162,40 @@ class GameScene: SKScene {
         }
         
     }
-        
-    
+     //function below found on stack overflow by Martin R
+    //https://stackoverflow.com/users/1187415/martin-r
+    //https://stackoverflow.com/questions/30748480/swift-get-devices-wifi-ip-address?rq=1
+    func getWiFiAddress() -> String? {
+        var address : String?
+
+        // Get list of all interfaces on the local machine:
+        var ifaddr : UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0 else { return nil }
+        guard let firstAddr = ifaddr else { return nil }
+
+        // For each interface ...
+        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let interface = ifptr.pointee
+
+            // Check for IPv4 or IPv6 interface:
+            let addrFamily = interface.ifa_addr.pointee.sa_family
+            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+
+                // Check interface name:
+                let name = String(cString: interface.ifa_name)
+                if  name == "en0" {
+
+                    // Convert interface address to a human readable string:
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                                &hostname, socklen_t(hostname.count),
+                                nil, socklen_t(0), NI_NUMERICHOST)
+                    address = String(cString: hostname)
+                }
+            }
+        }
+        freeifaddrs(ifaddr)
+
+        return address
+    }
 }
