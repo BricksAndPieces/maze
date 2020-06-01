@@ -16,17 +16,19 @@ class Client{
     var cords = [(String, String, String)]()
     
     let a = DispatchQueue(label: "accept", qos:.userInitiated, attributes: .concurrent)
-    
+    var connected:Bool
     init(name: String, ip: String="192.168.0.49") {
         self.ip = ip
         self.client = TCPClient(address: ip, port: 8009)
         switch self.client.connect(timeout: 20){
         case.success:
             print("connect")
+            connected = true
             
         case.failure:
             print("fail")
-        }
+            connected = false
+                    }
         self.name = name
         
         
@@ -40,7 +42,7 @@ class Client{
         }
     }
     func sendCords(x: CGFloat, y: CGFloat){
-        let data = self.name+x.description+"/"+y.description
+        let data = self.name+"*"+x.description+"/"+y.description
         
         let size = data.count
         let sizeB = self.int_bytes(num: size)
@@ -49,16 +51,17 @@ class Client{
         
     }
     func reciveCords(){
-        print("here")
+        
         guard let sizeB = self.client.read(8, timeout: 5) else { return }
         let size = bytes_int(bytes: sizeB)
         let data = self.client.read(size, timeout: 5)!
         let cord = String(bytes:data, encoding: .utf8)!
+        print("here:", cord)
         
-        let num = "1234567890"
+        
         var i = 0
         for c in cord{
-            if num.contains(c){
+            if c == "*"{
                 break
             }
             i+=1
@@ -74,7 +77,7 @@ class Client{
             }
             j+=1
         }
-        var x = cord[cord.index(cord.startIndex, offsetBy: i) ..< cord.index(cord.startIndex, offsetBy: j)]
+        var x = cord[cord.index(cord.startIndex, offsetBy: i+1) ..< cord.index(cord.startIndex, offsetBy: j)]
         
         
         var y = cord[cord.index(cord.startIndex, offsetBy: j + 1)..<cord.endIndex]
@@ -128,10 +131,18 @@ class Client{
     
     func reciveMaze() -> [[Bool]]{
         
-        guard var size = self.client.read(8, timeout: 200) else {print("timeout"); return [[Bool]]() }
+        guard var size = self.client.read(8, timeout: 10000) else {print("timeout"); return [[Bool]]() }
         var mazeB = self.client.read(bytes_int(bytes: size), timeout: 5)!
         var maze = String(bytes: mazeB, encoding: .utf8)!
         
         return stringTo2D(s: maze)
+    }
+    func sendName(){
+        
+               
+        let size = self.name.count
+        let sizeB = self.int_bytes(num: size)
+        self.client.send(data: sizeB)
+        self.client.send(string: self.name)
     }
 }

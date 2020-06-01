@@ -18,6 +18,8 @@ class Server{
     let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
     
     var threads = [DispatchQueue]()
+    var names = [String]()
+    var gameStarts = false
     init(ip: String="192.168.0.49") {
         self.ip = ip
         self.server = TCPServer(address: ip, port: 8009)
@@ -35,10 +37,14 @@ class Server{
                 self.clients.append(client)
                 
                 var t = DispatchQueue(label: String(self.threads.count), qos:.userInitiated, attributes: .concurrent)
+                if self.gameStarts{
+                    break
+                }
                 self.threads.append(t)
                 t.async {
                     while true{
-                        self.reciveAndSend(client:client)
+                        self.active(client:client)
+                        
                     }
                 }
                 
@@ -60,7 +66,20 @@ class Server{
             c.send(string: cord)
         }
     }
-    
+    func active(client:TCPClient){
+        if gameStarts{
+            reciveAndSend(client: client)
+            
+        }
+        else{
+            guard let data = client.read(8, timeout: 1) else { return  }
+            var size = bytes_int(bytes: data)
+            let data2 = client.read(size)!
+            let name = String(bytes:data2, encoding: .utf8)!
+            print(name)
+            self.names.append(name)
+        }
+    }
     func int_bytes(num: Int) -> [UInt8]{
         
         let array = withUnsafeBytes(of: num.bigEndian, Array.init)
