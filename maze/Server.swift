@@ -16,7 +16,7 @@ class Server{
     var clients = [TCPClient]()
     
     let a = DispatchQueue(label: "accept", qos:.background, attributes: .concurrent)
-    
+    //IP was 192.168.0.49
     var threads = [DispatchQueue]()
     var names = [String]()
     var gameStarts = false
