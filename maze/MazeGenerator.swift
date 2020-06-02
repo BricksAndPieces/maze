@@ -131,7 +131,7 @@ class MazeGenerator {
         let node = SKNode()
         let hitbox: UIBezierPath
         let scale = 128/2
-        
+        node.name = "wall"
         if !upDown {
             node.position = CGPoint(x: (x-maze.count-blockSize*2)*scale, y: (y-maze[0].count)*scale)
             hitbox = UIBezierPath(rect: CGRect(x: x*scale, y: y*scale, width: scale*2*blockSize, height: scale*2))

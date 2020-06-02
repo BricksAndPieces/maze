@@ -59,7 +59,7 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         wall.physicsBody?.collisionBitMask = PhysicsCategory.none
         wall.name = "wall"
         //addChild(wall)
-        addMasking()
+        //addMasking()
         
         
         

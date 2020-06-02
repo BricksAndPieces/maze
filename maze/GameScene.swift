@@ -107,7 +107,7 @@ class GameScene: SKScene {
                 
                 var thing = cli.reciveMaze()
                 print(thing)
-                var scene = Masking(size: self.size)
+                var scene = gameplay(size: self.size)
                 scene.c = cli
                 scene.mazeLayout = thing
                 scene.scaleMode = .aspectFit
@@ -149,7 +149,7 @@ class GameScene: SKScene {
                     
                     var thing = cli.reciveMaze()
                     print(thing)
-                    var scene = Masking(size: self.size)
+                    var scene = gameplay(size: self.size)
                     scene.c = cli
                     scene.mazeLayout = thing
                     scene.scaleMode = .aspectFit
