@@ -83,7 +83,7 @@ class Server{
             var size = bytes_int(bytes: data)
             let data2 = client.read(size)!
             let name = String(bytes:data2, encoding: .utf8)!
-            print(name)
+            
             self.names.append(name)
         }
     }

@@ -140,7 +140,7 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         let moveSequence = SKAction.sequence([moveAction, SKAction.run {self.player.removeAllActions()}])
         player.run(moveSequence)
         mask.run(moveSequence)
-        c!.sendCords(x: player.position.x, y: player.position.y)
+        c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
     }
     
     func playerWITHwallCollision(player: SKNode, wall: SKNode){

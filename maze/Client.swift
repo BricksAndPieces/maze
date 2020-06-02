@@ -41,8 +41,8 @@ class Client{
             }
         }
     }
-    func sendCords(x: CGFloat, y: CGFloat){
-        let data = self.name+"*"+x.description+"/"+y.description
+    func sendCords(x: Int, y: Int){
+        let data = self.name+"*"+String(x)+"/"+String(y)
         
         let size = data.count
         let sizeB = self.int_bytes(num: size)
@@ -56,7 +56,8 @@ class Client{
         let size = bytes_int(bytes: sizeB)
         let data = self.client.read(size, timeout: 5)!
         let cord = String(bytes:data, encoding: .utf8)!
-        print("here:", cord)
+        
+        
         
         
         var i = 0

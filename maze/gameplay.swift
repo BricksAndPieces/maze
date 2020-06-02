@@ -114,20 +114,20 @@ class gameplay:SKScene{
         
         if right{
             player.position.x+=10
-            c!.sendCords(x: player.position.x, y: player.position.y)
+            c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
             
         }
         else if left{
             player.position.x-=10
-            c!.sendCords(x: player.position.x, y: player.position.y)
+            c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
         }
         else if ddown{
             player.position.y-=10
-            c!.sendCords(x: player.position.x, y: player.position.y)
+            c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
         }
         else if uup{
             player.position.y+=10
-            c!.sendCords(x: player.position.x, y: player.position.y)
+            c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
         }
     }
 }
