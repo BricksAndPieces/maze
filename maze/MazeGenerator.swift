@@ -142,6 +142,7 @@ class MazeGenerator {
         }
         
         node.physicsBody = SKPhysicsBody(edgeLoopFrom: hitbox.cgPath)
+        node.name = "wall"
         return node
     }
     
