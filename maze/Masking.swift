@@ -42,9 +42,9 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         player.fillColor = SKColor.white
         player.physicsBody = SKPhysicsBody(circleOfRadius: 32)
         player.physicsBody?.isDynamic = true
-        player.physicsBody?.categoryBitMask = PhysicsCategory.player
-        player.physicsBody?.contactTestBitMask = PhysicsCategory.wall
-        player.physicsBody?.collisionBitMask = PhysicsCategory.none
+        //player.physicsBody?.categoryBitMask = PhysicsCategory.player
+        //player.physicsBody?.contactTestBitMask = PhysicsCategory.wall
+        //player.physicsBody?.collisionBitMask = PhysicsCategory.none
         player.physicsBody?.usesPreciseCollisionDetection = true
         player.name = "player"
         addChild(player)
@@ -54,10 +54,10 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         wall.fillColor = .white
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 200))
         wall.physicsBody?.isDynamic = true
-        wall.physicsBody?.categoryBitMask = PhysicsCategory.wall
-        wall.physicsBody?.contactTestBitMask = PhysicsCategory.player
-        wall.physicsBody?.collisionBitMask = PhysicsCategory.none
-        wall.name = "wall"
+        //wall.physicsBody?.categoryBitMask = PhysicsCategory.wall
+        //wall.physicsBody?.contactTestBitMask = PhysicsCategory.player
+        //wall.physicsBody?.collisionBitMask = PhysicsCategory.none
+        //wall.name = "wall"
         //addChild(wall)
         //addMasking()
         
@@ -138,9 +138,13 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         let moveDuration = moveDistance/moveSpeed
         let moveAction = SKAction.move(to: location, duration: (TimeInterval(moveDuration)))
         let moveSequence = SKAction.sequence([moveAction, SKAction.run {self.player.removeAllActions()}])
-        player.run(moveSequence)
-        mask.run(moveSequence)
-        c!.sendCords(x: Int(player.position.x), y: Int(player.position.y))
+        
+
+        player.run(SKAction.applyForce(CGVector(dx: moveDifference.x*10, dy: moveDifference.y*10), duration: 0.01))
+        
+        //player.run(moveSequence)
+        //mask.run(moveSequence)
+        c!.sendCords(x: player.position.x, y: player.position.y)
     }
     
     func playerWITHwallCollision(player: SKNode, wall: SKNode){

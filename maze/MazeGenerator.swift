@@ -87,6 +87,7 @@ class MazeGenerator {
         }
             
         createTilemapCollider(tilemap: tilemap, layout: layout)
+        addFinish(tilemap: tilemap, layout: layout)
         return tilemap
     }
     
@@ -141,6 +142,36 @@ class MazeGenerator {
         }
         
         node.physicsBody = SKPhysicsBody(edgeLoopFrom: hitbox.cgPath)
+        node.name = "wall"
         return node
+    }
+    
+    private func addFinish(tilemap: SKNode, layout: [[Bool]]) {
+        var validFinishes = [CGPoint]()
+        for x in 1 ..< layout.count-1 {
+            if !layout[x][1] {
+                validFinishes.append(CGPoint(x: x, y: 1))
+            }
+            if !layout[x][layout[x].count-2] {
+                validFinishes.append(CGPoint(x: x, y: layout[x].count-2))
+            }
+        }
+        
+        for y in 1 ..< layout[0].count-1 {
+            if !layout[1][y] {
+                validFinishes.append(CGPoint(x: 1, y: y))
+            }
+            if !layout[layout.count-2][y] {
+                validFinishes.append(CGPoint(x: layout.count-2, y: y))
+            }
+        }
+        
+        let finishNode = validFinishes.randomElement()!
+        let finish = SKShapeNode(circleOfRadius: 25)
+        finish.position = CGPoint(x: ((Int(finishNode.x)-layout.count/2))*128, y: (Int(finishNode.y)-layout[0].count/2)*128)
+        finish.fillColor = .red
+        finish.name = "finish"
+        
+        tilemap.addChild(finish)
     }
 }
