@@ -20,10 +20,17 @@ class Server{
     var threads = [DispatchQueue]()
     var names = [String]()
     var gameStarts = false
+    var startup = false
     init(ip: String="192.168.0.49") {
         self.ip = ip
         self.server = TCPServer(address: ip, port: 8009)
-        self.server.listen()
+        switch self.server.listen(){
+        case .success:
+            startup = true
+        
+        case .failure:
+            startup = false
+        }
         
         
     }

@@ -74,27 +74,28 @@ class GameScene: SKScene {
         var t = touches.first?.location(in: self) as! CGPoint
         
         if h.contains(t){
-            qwe.removeFromParent()
-                        nameEntry.removeFromSuperview()
-            ip.removeFromSuperview()
-            c.removeFromParent()
-            h.removeFromParent()
+            
             s = Server(ip: ip.text!)
-            s!.start()
-            lobby.numberOfLines = 20
-            addChild(lobby)
-            var loop = DispatchQueue(label: "lobby", qos:.background, attributes: .concurrent)
-            loop.async{
-                while !self.s!.gameStarts{
-                    var n = ""
-                    for i in self.s!.names{
-                        n = n + "\n" + i
+           
+            
+            if s!.startup{
+                lobby.numberOfLines = 20
+                s!.start()
+                qwe.removeFromParent()
+                nameEntry.removeFromSuperview()
+                ip.removeFromSuperview()
+                c.removeFromParent()
+                h.removeFromParent()
+                addChild(lobby)
+                var loop = DispatchQueue(label: "lobby", qos:.background, attributes: .concurrent)
+                loop.async{
+                    while !self.s!.gameStarts{
+                        var n = ""
+                        for i in self.s!.names{
+                            n = n + "\n" + i
+                        }
+                        self.lobby.text = n
                     }
-                    self.lobby.text = n
-                }
-                    
-                
-                
             }
             var cli = Client(name: nameEntry.text!, ip: ip.text!)
             cli.sendName()
@@ -114,6 +115,14 @@ class GameScene: SKScene {
                 
                 
             }
+                    
+                
+                
+            }
+            else{
+                qwe.text = "Server start up failed"
+            }
+            
             
             
             
