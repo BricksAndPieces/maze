@@ -63,6 +63,8 @@ class gameplay:SKScene{
         addChild(player)
         c!.start()
         
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

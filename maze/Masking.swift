@@ -26,7 +26,7 @@ class Masking: SKScene, SKPhysicsContactDelegate {
     var names = "HELP"
     var mazeLayout: [[Bool]]?
     let mazeGen = MazeGenerator()
-    
+    var t = Date().timeIntervalSinceReferenceDate
     override func didMove(to view: SKView) {
         let tilemap = mazeGen.getMazeNode(layout: mazeLayout!)
         tilemap.setScale(1.3)
@@ -61,10 +61,15 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         //addChild(wall)
         //addMasking()
         
-        
-        
         c!.start()
+        
+        
+        
+        
+        
     }
+    
+    
     
     var mask = SKShapeNode()
     func addMasking(){
@@ -109,6 +114,7 @@ class Masking: SKScene, SKPhysicsContactDelegate {
     }
     
     func movePlayer(location: CGPoint){
+        
         let moveSpeed = (frame.size.width / 3.0)
         let moveDifference = CGPoint(x: location.x - player.position.x, y: location.y - player.position.y)
         
@@ -144,7 +150,7 @@ class Masking: SKScene, SKPhysicsContactDelegate {
         
         //player.run(moveSequence)
         //mask.run(moveSequence)
-        c!.sendCords(x: player.position.x, y: player.position.y)
+        
     }
     
     func playerWITHwallCollision(player: SKNode, wall: SKNode){
@@ -171,6 +177,11 @@ class Masking: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: CFTimeInterval){
         cam.position = player.position
+        
+        if Date().timeIntervalSinceReferenceDate - t > 0.1{
+            t = Date().timeIntervalSinceReferenceDate
+            c!.sendCords(x: Int(player.position.x), y: Int(player.position.x))
+        }
         
         
         
